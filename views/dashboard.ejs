@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/styles.css">
+    </head>
+<style>
+    body{
+        background: #002b36;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        
+    }
+    .recentDocuments{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+    }
+    .header{
+        font-size: 2rem;
+        color: azure;
+        font-family: sans-serif;
+    }
+    .documentList{
+        list-style: none;
+        width: 85vw;
+    }
+    .documentList>li{
+        background: #3ca1bb80;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        color: white;
+        width: 100%;
+        height: 3rem;
+        transition: transform 200ms ease-in-out;
+    }
+    .list{
+        text-decoration: none;
+        color: azure;
+    }
+    .documentList>li:hover{
+        transform: scale(1.05);
+    }
+    .liBtn{
+        text-decoration: none;
+        border: 1px solid #002b36;
+        background-color: #002b369c;
+        height: 2.5rem;
+        padding: 0 1rem;
+        color: #89cce0;
+        border-radius: 0.5rem;
+        transition: background-color 300ms ease-in-out;
+        
+    }
+    .liBtn:hover{
+        background-color: #002b36;
+        color: white;
+    }
+
+</style>
+<body>
+    <%- include("_buttons.ejs", {encrypt: true, dashboard: false}) %> 
+    <div class="header">Hello <%= locals.user.username %>,  </div>
+    <div class="recentDocuments">
+        <div class="header">Recent Documents...</div>
+        <ul class="documentList">
+            <% docs.forEach(doc=>{ %>
+                <li>
+                    <div class="docTitle"><%= doc.title %></div>
+                    <div class="docSum"> <%= doc.value.substring(0,50) %>...  </div>
+                    <a href="/users/getlink/<%= doc._id %> " class="liBtn">Get Link</a>
+                    <a href="/users/encrypt/<%= doc._id %>" class="liBtn">Secure Link</a>
+                    <a href="/users/renew/<%= doc._id %> " class="liBtn">Renew Link</a>
+                    <a href="/users/delete/<%= doc._id  %> " class="liBtn">Delete</a>
+                </li>
+            <% }) %> 
+        </ul>
+            
+</body>
+</html>
