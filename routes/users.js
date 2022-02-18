@@ -121,7 +121,7 @@ router.get("/getlink/:id", async(req, res)=>{
     .then(data => {
         // navigator.clipboard.writeText(data.result.full_short_link);
         console.log(data)
-        res.status(200).redirect(`/${data.result.full_short_link}`)
+        res.status(200).redirect(`${data.result.full_short_link}`)
     })
 })
 
