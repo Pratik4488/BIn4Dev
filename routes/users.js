@@ -22,7 +22,7 @@ router.post('/register', async (req, res) =>{
 
         // SAVE USER AND RETURN RESPOSNE...
         const user = await newUser.save();
-        res.status(200).redirect("/login",);
+        res.status.redirect("/login",);
     }catch(error){
         alert(error)
         res.status(500).redirect("/register");
