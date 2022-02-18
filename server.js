@@ -6,7 +6,7 @@ const dotenv = require('dotenv')
 const cors = require('cors')
 const Document = require('./models/document')
 const User = require("./models/user")
-const userRoute = require("./Routes/users")
+const userRoute = require("./routes/users")
 const cookieParser = require('cookie-parser')
 
 dotenv.config();
