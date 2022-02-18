@@ -87,8 +87,8 @@
                 fetch(`https://api.shrtco.de/v2/shorten?url=bin4dev.herokuapp.com/${docId}`)
                     .then(res => res.json())
                     .then(data =>{
-                        navigator.clipboard.writeText(data.result.full_short_link);
-                        alert("Copied the text: " + data.result.full_short_link);
+                        navigator.clipboard.writeText(data.result.original_link);
+                        alert("Copied the text: " + data.result.original_link);
                     })
             }
         </script>
