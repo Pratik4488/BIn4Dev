@@ -3,6 +3,7 @@ const User = require('../models/user');
 const Document = require("../models/document")
 const bcrypt = require('bcrypt');
 const EncryDocument = require('../models/encrypted')
+const fetch = require('node-fetch')
 
 //Register
 router.post('/register', async (req, res) =>{
@@ -24,6 +25,7 @@ router.post('/register', async (req, res) =>{
         const user = await newUser.save();
         res.status.redirect("/login",);
     }catch(error){
+
         res.status(500).redirect("/register");
     }
 });
@@ -114,7 +116,13 @@ router.get("/encrypt/:id", async(req, res)=>{
 })
 router.get("/getlink/:id", async(req, res)=>{
     const docId = req.params.id;
-    res.status(200).redirect(`/${docId}`)
+    fetch(`https://api.shrtco.de/v2/shorten?url=bin4dev.herokuapp.com/${docId}`)
+    .then(res=> res.json())
+    .then(data => {
+        // navigator.clipboard.writeText(data.result.full_short_link);
+        console.log(data)
+        res.status(200).redirect(`/${data.result.full_short_link}`)
+    })
 })
 
 

@@ -75,23 +75,13 @@
                 <li>
                     <div class="docTitle"><%= doc.title %></div>
                     <div class="docSum"> <%= doc.value.substring(0,50) %>...  </div>
-                    <button onclick="createLink(doc._id)" class="litBtn">Get Link</button>
+                    <a href="/users/getlink/<%= doc._id %> " class="liBtn">Get Link</a>
                     <a href="/users/encrypt/<%= doc._id %>" class="liBtn">Secure Link</a>
                     <a href="/users/renew/<%= doc._id %> " class="liBtn">Renew Link</a>
                     <a href="/users/delete/<%= doc._id  %> " class="liBtn">Delete</a>
                 </li>
             <% }) %> 
         </ul>
-        <script>
-            function createLink(docId){
-                fetch(`https://api.shrtco.de/v2/shorten?url=bin4dev.herokuapp.com/${docId}`)
-                    .then(res => res.json())
-                    .then(data =>{
-                        navigator.clipboard.writeText(data.result.original_link);
-                        alert("Copied the text: " + data.result.original_link);
-                    })
-            }
-        </script>
             
 </body>
 </html>
