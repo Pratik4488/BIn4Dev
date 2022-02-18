@@ -149,5 +149,5 @@ app.get('/:id/duplicate', async (req, res) => {
 
 app.use("/users", userRoute);
 app.listen(process.env.PORT|| 80, () => {
-    console.log(`listening to the point no at ${port}`);
+    console.log(`listening to the point no at ${process.env.PORT}`);
 });
